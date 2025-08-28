@@ -7,6 +7,6 @@ class Test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: MealItem(meal: dummyMeals[0]));
+    return Scaffold(/* body: MealItem(meal: dummyMeals[0]) */);
   }
 }

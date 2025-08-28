@@ -16,19 +16,21 @@ class MealItem extends StatelessWidget {
         meal.affordability.name.substring(1);
   }
 
-  const MealItem({super.key, required this.meal});
+  const MealItem({super.key, required this.meal, required this.onSelected});
+
+  final void Function(BuildContext Context, Meal meal) onSelected;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Meal Dettails Not Yet Implemented'),
-            duration: Duration(seconds: 2),
-          ),
-        );
+        onSelected(context, meal);
       },
+      /* () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (ctx) => MealDetailsScreen(meal: meal)),
+        );
+      }, */
       child: Card(
         margin: const EdgeInsets.all(8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

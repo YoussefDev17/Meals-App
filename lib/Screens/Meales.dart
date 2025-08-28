@@ -1,18 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/Meal.dart';
 import 'package:meals_app/Widgets/Meal_Item.dart';
+import 'package:meals_app/Screens/Meal_Details.dart';
 
 class MealsScreen extends StatelessWidget {
   final List<Meal> meals;
-  final String title;
+  final String? title;
+  final void Function(Meal meal) onSelect;
 
-  MealsScreen({super.key, required this.meals, required this.title});
+  void selectMeal(BuildContext context, Meal meal) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder:
+            (ctx) =>
+                MealDetailsScreen(meal: meal, onToggleFavorite: this.onSelect),
+      ),
+    );
+  }
+
+  MealsScreen({
+    super.key,
+    required this.meals,
+    this.title,
+    required this.onSelect,
+  });
 
   @override
   Widget build(BuildContext context) {
     Widget content = ListView.builder(
       itemCount: meals.length,
-      itemBuilder: (context, index) => MealItem(meal: meals[index]),
+      itemBuilder:
+          (context, index) =>
+              MealItem(meal: meals[index], onSelected: selectMeal),
     );
 
     if (meals.isEmpty) {
@@ -38,30 +57,10 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: content,
+    if (title == null) {
+      return content;
+    }
 
-      /*       body: ListView(
-        children:
-            meals.map((meal) {
-              return ListTile(
-                title: Text(meal.title),
-                subtitle: Text(meal.duration.toString() + ' min'),
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(meal.imageUrl),
-                ),
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Selected Meal: ${meal.title}'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                },
-              );
-            }).toList(),
-      ), */
-    );
+    return Scaffold(appBar: AppBar(title: Text(title!)), body: content);
   }
 }

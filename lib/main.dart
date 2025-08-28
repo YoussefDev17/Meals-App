@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals_app/Screens/Categories.dart';
+/* import 'package:meals_app/Screens/Categories.dart';
+ */
+import 'package:meals_app/Screens/TabBasedNavBar.dart';
 
 /* import 'package:meals_app/Screens/Test.dart';
  */
@@ -22,7 +24,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, home: const CtaegoriesScreen());
+    return MaterialApp(theme: theme, home: TabScreen());
   }
 
   /* Widget build(BuildContext context) {

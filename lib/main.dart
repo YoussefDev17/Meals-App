@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-/* import 'package:meals_app/Screens/Categories.dart';
- */
 import 'package:meals_app/Screens/TabBasedNavBar.dart';
+//import 'package:meals_app/Screens/Filters.dart';
 
-/* import 'package:meals_app/Screens/Test.dart';
- */
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -27,7 +24,7 @@ class App extends StatelessWidget {
     return MaterialApp(theme: theme, home: TabScreen());
   }
 
-  /* Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, home: const Test());
+  /*   Widget build(BuildContext context) {
+    return MaterialApp(theme: theme, home: const FiltersScreen());
   } */
 }
